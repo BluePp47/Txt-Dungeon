@@ -1,10 +1,3 @@
-
-
-using System.ComponentModel;
-using System.Dynamic;
-using System.IO.Pipelines;
-using System.Security.Cryptography.X509Certificates;
-
 public class Game
 {
     PlayerInfo _info = new();
@@ -314,8 +307,6 @@ public class JobList()
     public string SelectedJob;
 }
 
-
-
 public class Market()
 {
     List<string> WarriorsWeps = new List<string>();
@@ -349,10 +340,7 @@ public class Market()
         Complementaries.Add("HealingPotion"); //HP + 50
         Complementaries.Add("Scrolls");    //DMG + 5
     }
-
-
 }
-
 
 public class Status()
 {
@@ -362,7 +350,6 @@ public class Status()
     public float hp = 100.0f;
     public int Gold = 1500;
 }
-
 
 public class Inventory()
 {
