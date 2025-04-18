@@ -214,10 +214,6 @@ public class Game
 
     }
 
-
-
-
-
     //휴식
     public void Rest()
     {
@@ -251,11 +247,6 @@ public class Game
             Rest();
         }
     }
-
-
-
-
-
 
 
 }
@@ -351,10 +342,7 @@ public class Market()
         Complementaries.Add("HealingPotion"); //HP + 50
         Complementaries.Add("Scrolls");    //DMG + 5
     }
-
-
 }
-
 
 public class Status()
 {
