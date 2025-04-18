@@ -1,4 +1,11 @@
 # Txt-Dungeon
+
+
+using System.ComponentModel;
+using System.Dynamic;
+using System.IO.Pipelines;
+using System.Security.Cryptography.X509Certificates;
+
 public class Game
 {
     PlayerInfo _info = new();
@@ -107,7 +114,7 @@ public class Game
             int Choose1 = int.Parse(Console.ReadLine());
             if (Choose1 == 1)
             {
-                Console.WriteLine("1. 장착하기 0. 나가기");
+                Console.WriteLine();
             }
             else if (Choose1 == 0)
             {
@@ -127,12 +134,7 @@ public class Game
 
     public void ShowMarket()
     {
-        Console.WriteLine("상점");
         Console.WriteLine("필요한 아이템을 얻을수 있는 상점입니다.");
-        Console.WriteLine("원하시는 행동을 선택해주세요.\n>>");
-        Console.WriteLine("1. 구매하기\t 0.그만두기");
-        int Choose = int.Parse(Console.ReadLine());
-        if (Choose == 1)
         {
             if (_job.SelectedJob == _job.Warrior)
             {
@@ -142,14 +144,15 @@ public class Game
                 if (Choose1 == 1)
                 {
                     Console.WriteLine("전사 전용무기");
-                    WarriorsWeps.Add("Sword");      // DMG +10
-                    WarriorsWeps.Add("Shield");     // Armor +5
-                    WarriorsWeps.Add("Hammer");     // DMG + 15
-                    WarriorsWeps.Add("Spear");      // DMG + 13
+                    Console.WriteLine();
+                    Console.WriteLine("Sword  | 엄청큰 태도 | ATK + 10 | 200G");      // DMG +10
+                    Console.WriteLine("Shield | 엄청큰 방패 | ATK + 5  | 200G");     // Armor +5
+                    Console.WriteLine("Hammer | 엄청큰 망치 | ATK + 15 | 200G ");     // DMG + 15
+                    Console.WriteLine("Spear  | 엄청긴 창   | ATK + 13 | 200G ");      // DMG + 13
                 }
                 else if (Choose1 == 2)
                 {
-                    ShowMarket();
+                    AtTown();
                 }
                 else
                 {
@@ -160,19 +163,20 @@ public class Game
             }
             if (_job.SelectedJob == _job.Magician)
             {
-                Console.WriteLine("1. 구매하기\t 2.그만두기");
+                Console.WriteLine("1. 구매하기\t  2.그만두기");
                 int Choose1 = int.Parse(Console.ReadLine());
 
                 if (Choose1 == 1)
                 {
                     Console.WriteLine("마법사 전용무기");
-                    MagiciansWeps.Add("Wands");     // DMG + 10
-                    MagiciansWeps.Add("Charm");     // DMG + 13
-                    MagiciansWeps.Add("staff");     // DMG + 15   
+                    Console.WriteLine();
+                    Console.WriteLine("Wands| 아주 작은 요술봉    | Magic + 10 | 200G");     // DMG + 10
+                    Console.WriteLine("Charm| 엄청 큰 부적        | Magic + 13 | 200G");     // DMG + 13
+                    Console.WriteLine("staff| 엄청 큰 마법 지팡이  | Magic + 15 | 200G");     // DMG + 15   
                 }
                 else if (Choose1 == 2)
                 {
-                    ShowMarket();
+                    AtTown();
                 }
                 {
                     Console.WriteLine("잘못된 입력입니다");
@@ -187,32 +191,26 @@ public class Game
                 if (Choose1 == 1)
                 {
                     Console.WriteLine("궁수 전용무기");
-                    ArchersWeps.Add("Bow");         // DMG + 10
-                    ArchersWeps.Add("Arrow");       // DMG + 5
-                    ArchersWeps.Add("CrossBow");    // DMG + 20
+                    Console.WriteLine();
+                    Console.WriteLine("Bow      | 가벼운 활      | ATK + 10 | 200G");         // DMG + 10
+                    Console.WriteLine("Arrow    | 매우 좋은 화살  | ATK + 5 | 200G");       // DMG + 5
+                    Console.WriteLine("CrossBow | 엄청큰 석궁    | ATK + 20 | 200G");    // DMG + 20
                 }
                 else if (Choose1 == 2)
                 {
-                    ShowMarket();
+                    AtTown();
                 }
                 {
                     Console.WriteLine("잘못된 입력입니다");
                     ShowMarket();
+
                 }
             }
-        }
-        else if (Choose == 0)
-        {
-            AtTown();
-        }
-        else
-        {
-            Console.WriteLine("잘못된 입력입니다");
-            ShowMarket();
-        }
 
+        }
 
     }
+
 
     //휴식
     public void Rest()
@@ -249,7 +247,17 @@ public class Game
     }
 
 
+    public class Items
+    {
+        public string Name { get; set; }
+        public int descripton { get; set; }
+        public int value { get; set; }
+        public int Cost { get; set; }
+        public bool Equiped { get; set; }
+        public bool purchased { get; set; }
+    }
 }
+
 class Program
 {
     static void Main(string[] args)
@@ -260,7 +268,7 @@ class Program
 }
 
 
-// List<string> strings  = new List<string>(); //List 뒤 <>안 자료형에 따라 하위 추가기능이 달라지고 서로 일치해야함함
+
 
 // strings.Add("Short1");
 // strings.Add("Short2");
@@ -342,7 +350,10 @@ public class Market()
         Complementaries.Add("HealingPotion"); //HP + 50
         Complementaries.Add("Scrolls");    //DMG + 5
     }
+
+
 }
+
 
 public class Status()
 {
@@ -351,8 +362,6 @@ public class Status()
     public int Armor = 5;
     public float hp = 100.0f;
     public int Gold = 1500;
-
-
 }
 
 
@@ -362,6 +371,4 @@ public class Inventory()
     List<string> MagiciansWeps = new List<string>();
     List<string> ArchersWeps = new List<string>();
     List<string> Complementaries = new List<string>();
-
-
 }
